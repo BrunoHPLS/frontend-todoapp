@@ -39,6 +39,7 @@ export default function useAuth(){
     }
 
     async function handleLogin({loginEmail,senha}) {
+        let response = 'autenticado';
        await loginUser(loginEmail,senha)
        .then(({data:{token,nome,email}})=>{
             localStorage.setItem('token',JSON.stringify(token));
@@ -49,42 +50,10 @@ export default function useAuth(){
             setUsuario({nome: nome,email: email});
             setAuthenticated(true);
         }).catch(({response:{data:{description}}})=>{
-            console.log(description);
+            response = description;
         });
-
+        return response;
     }
-
-    // async function handleRegister({registerEmail,username,senha}){
-    //     let response;
-    //     let success = false;
-
-    //     await api.post('/usuario/cadastro',{
-    //         email: registerEmail,
-    //         nome: username,
-    //         senha: senha,
-    //     }).then(({data})=>{
-    //         response = data;
-    //         success = true;
-    //     }).catch(({response:{data:{description}}})=>{
-    //         response =description;
-    //     });
-
-    //     return {response,success};
-    // }
-
-    // async function handleValidate({validToken}){
-    //     let response;
-    //     await api.get('/usuario/validate',{
-    //         params: {
-    //             token: validToken
-    //         }
-    //     }).then(({data})=>{
-    //         response = data;
-    //     }).catch(({response:{data:{description}}})=>{
-    //         response = description;
-    //     });
-    //     return response;
-    // }
 
     function handleLogout() {
         setAuthenticated(false);

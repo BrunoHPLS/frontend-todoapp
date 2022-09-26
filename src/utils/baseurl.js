@@ -1,1 +1,1 @@
-export const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8080/api-todoapp";
+export const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? "http://192.168.1.160:8080/api-todoapp";

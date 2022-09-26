@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import ReativarConta from './pages/ReativarConta';
 import ValidaToken from './pages/ValidaToken';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
 
 function CustomRoute({isPrivate,isOnlyPublic,CustomLoading,...rest}){
@@ -39,6 +40,7 @@ function Rotas() {
   return (
     <>
         <GlobalStyles theme={theme} media={media}/>
+        <ThemeSwitcher/>
         <BrowserRouter>
             <Routes>
                 <Route path='/' exact element={<CustomRoute isPrivate CustomLoading={<h1>Carregando Home</h1>}/>}>

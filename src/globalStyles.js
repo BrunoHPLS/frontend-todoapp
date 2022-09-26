@@ -1,12 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+    :root{
+        ${({theme})=>(theme === 'dark' ? 
+        `
+        --font-color: #ffffff;
+        --bgcolor-df: #1F1F1F;
+        `:
+        `
+        --font-color: #303030;
+        --bgcolor-df: #D5D5D5;
+        `)}
+    }
+
     body{
-        background-color: ${({theme})=>(theme!=undefined && theme === 'dark' ? '#151515':'#ccc')};
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: ${({media})=>(media!=undefined && media === 'large' ? 'flex-start':media!=undefined && media === 'tablet' ? 'center':'flex-end')};
+        background-color: var(--bgcolor-df);
+        color: var(--font-color);
     }
 `;
 

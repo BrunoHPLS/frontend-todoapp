@@ -1,14 +1,14 @@
 import React ,{ createContext } from "react";
-import { useState } from "react";
+import useTheme from "../hooks/useTheme";
 
 const ThemeContext = createContext();
 
 function ThemeProvider({children}) {
 
-    const [theme,setTheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light');
+  const {theme,changeTheme,createThemeStorage} = useTheme();
 
   return (
-    <ThemeContext.Provider value={{theme, setTheme}}>
+    <ThemeContext.Provider value={{theme, changeTheme,createThemeStorage}}>
         {children}
     </ThemeContext.Provider>
   );
