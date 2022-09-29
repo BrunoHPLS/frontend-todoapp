@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import Form from '../../components/Form';
+import ButtonArea from '../../components/Form/ButtonArea';
+import FormContainer from '../../components/FormContainer';
+import Link from '../../components/Link';
+import TextField from '../../components/TextField';
 import { validate } from '../../service/userService';
+import { MainBody } from '../style';
 
 
 function ValidaToken() {
-  const [message,setMessage] = useState('');
 
 return (
-  <>
-      <h1>Validar Token</h1>
-      <form onSubmit={async (event)=>{
-              event.preventDefault();
-              let {token} = event.target;
-              await validate(token.value)
-              .then(({data})=>setMessage(data))
-              .catch(({response:{data:{description}}})=>setMessage(description));
-          }}>
-              <h3>{message}</h3>
-              <input type="text" id='token' name='token' placeholder='token' required/>
-              <button type='submit'>Validar</button>
-              <br/>
-              <Link to='/cadastro'>Voltar ao cadastro</Link>
-              <br/>
-              <Link to='/login'>Ir para login</Link>
-      </form>
-  </>
+  <MainBody>
+    <FormContainer title={'Validar Login'}>
+      <Form 
+        asyncRequestWithResponse={validate}
+      >
+        <TextField 
+        icon="key"
+        type="text" 
+        id='token' 
+        name='token' 
+        placeholder='Digite o token' 
+        required
+        />
+        <ButtonArea value="Validar"/>
+        <Link to='/cadastro'>Ir para cadastro</Link>
+        <Link to='/login'>Ir para login</Link>
+      </Form>
+    </FormContainer>
+  </MainBody>
 );
 }
 

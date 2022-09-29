@@ -4,7 +4,7 @@ import { Container, Label } from './style';
 
 function ThemeSwitcher() {
     
-    const {theme,changeTheme,createThemeStorage} = useContext(ThemeContext);
+    const {theme,changeTheme} = useContext(ThemeContext);
     const [checked,setChecked] = useState(theme === 'dark');
 
     function getThemeStorage(){

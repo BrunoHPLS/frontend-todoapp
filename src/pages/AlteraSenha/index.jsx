@@ -1,44 +1,57 @@
 import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Form from '../../components/Form';
+import ButtonArea from '../../components/Form/ButtonArea';
+import FormContainer from '../../components/FormContainer';
+import Link from '../../components/Link';
+import TextField from '../../components/TextField';
 import { alteraSenha, newToken } from '../../service/userService';
+import { MainBody } from '../style';
 
 function AlteraSenha() {
-    const [message1,setMessage1] = useState('');
-    const [message2,setMessage2] = useState('');
+    const formDescription = `Digite seu email abaixo para o token ser enviado.\nApós recebê-lo, digite a senha desejada e o token.\nSua senha será alterada.`
 
   return (
-    <>
-      <h1>Alterar Senha</h1>
-      <h4>Digite seu email abaixo para o token ser enviado.<br/> Após recebê-lo, digite a senha desejada e o token.<br/> Sua senha será alterada</h4>
-      <form onSubmit={async (event)=>{
-              event.preventDefault();
-              let {email} = event.target;
-              await newToken(email.value)
-              .then(({data})=>setMessage1(data))
-              .catch(({response:{data:{description}}})=>setMessage1(description));
-          }}>
-              <h2>Email para o token</h2>
-              <input type="email" id='email' name='email' placeholder='email' required/>
-              <button type='submit'>Enviar Token</button>
-              <h3>{message1}</h3>
-      </form>
-      <form onSubmit={async (event)=>{
-              event.preventDefault();
-              let {senha,token} = event.target;
-              await alteraSenha(senha.value,token.value)
-              .then(({data})=>setMessage2(data))
-              .catch(({response:{data:{description}}})=>setMessage2(description));
-          }}>
-              <h2>Senha a ser alterada</h2>
-              <input type="password" id='senha' name='senha' placeholder='Nova senha' required/>
-              <input type="text" id='token' name='token' placeholder='Seu token' required/>
-              <button type='submit'>Alterar senha</button>
-              <h3>{message2}</h3>
-      </form>
-      <br/>
-      <Link to='/login'>Ir para login</Link>
-  </>
+    <MainBody>
+      <FormContainer title={"Alterar Senha"} description={formDescription}>
+        <Form 
+          formTitle="Email"
+          asyncRequestWithResponse={newToken}
+        >
+          <TextField 
+            icon="mail"
+            type="email" 
+            id='email' 
+            name='email' 
+            placeholder='Email para o token' 
+            required
+          />
+          <ButtonArea value={"Enviar Token"}/>
+        </Form>
+        <Form
+          formTitle="Token e Senha"
+          asyncRequestWithResponse={alteraSenha}
+        >
+          <TextField 
+            icon="key"
+            type="text" 
+            id='token' 
+            name='token' 
+            placeholder='Digite o token' 
+            required
+          />
+          <TextField 
+            icon="password"
+            type="password" 
+            id='senha' 
+            name='senha' 
+            placeholder='Digite a nova senha' 
+            required
+          />
+          <ButtonArea value={"Alterar senha"}/>
+        </Form>
+        <Link to="/login">Ir para login</Link>
+      </FormContainer>
+  </MainBody>
   );
 }
 

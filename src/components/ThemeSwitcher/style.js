@@ -8,7 +8,7 @@ export const Container = styled.div`
     height: 2rem;
     overflow: hidden;
     box-sizing: border-box;
-    border: 0.125rem solid ${({isChecked})=>(isChecked ? "#ffffff":"#1F1F1F")};
+    border: 0.125rem solid var(--inverse-secondary-color);
     border-radius: 0.5rem;
     transition: all 0.2s ease-in-out;
 `;
@@ -17,7 +17,7 @@ export const Label = styled.label`
     cursor: pointer;
     width: 100%;
     height: 100%;
-    background-color: ${({isChecked})=>(isChecked ? "#c5c5c5":"#303030")};
+    background-color: var(--inverse-primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,12 +30,11 @@ export const Label = styled.label`
         position: absolute;
         transition: all 0.2s ease-in-out;
         font-size: 1.5rem;
+        color: var(--primary-color);
         ${({isChecked})=>(isChecked ? `
-        color: black;
         content: "dark_mode";
         transform: translateX(0.8rem);
         `:`
-        color: white;
         content: "sunny";
         transform: translateX(-0.8rem);
         `)}

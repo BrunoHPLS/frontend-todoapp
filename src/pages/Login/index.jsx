@@ -1,34 +1,44 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import Form from '../../components/Form';
+import ButtonArea from '../../components/Form/ButtonArea';
+import FormContainer from '../../components/FormContainer';
+import Link from '../../components/Link';
+import TextField from '../../components/TextField';
 import { AuthContext } from '../../contexts/AuthContext';
+import { MainBody } from '../style';
 
 function Login() {
     const {handleLogin} = useContext(AuthContext);
-    const [message,setMessage] = useState('');
 
     return (
-      <div>
-          <form onSubmit={async (event)=>{
-              event.preventDefault();
-              let {email,senha} = event.target;
-              setMessage( await handleLogin({loginEmail: email.value,senha: senha.value}));
-          }}>
-              <h1>Login</h1>
-              <p>{message}</p>
-              <input type="email" id='email' name='email' placeholder='email' required/>
-              <input type="password" id='senha' name='senha' placeholder='senha' required/>
-              <br/>
-              <br/>
-              <button type='submit'>Entrar</button>
-              <br/>
-              <br/>
-              <Link to='/cadastro'>Não possui cadastro?</Link>
-              <br/>
-              <Link to='/nova-senha'>Esqueceu sua senha?</Link>
-              <br/>
-              <Link to='/reativar-conta'>Reativar Conta?</Link>
-          </form>
-      </div>
+      <MainBody>
+        <FormContainer title={'Login'}>
+          <Form 
+            asyncRequestWithResponse={handleLogin}
+          >
+            <TextField 
+            icon="mail" 
+            type="email" 
+            id='loginEmail' 
+            name='loginEmail' 
+            placeholder='Digite seu email'
+            required 
+            />
+            <TextField 
+            icon="password" 
+            type="password" 
+            id='senha' 
+            name='senha' 
+            placeholder='Digite sua senha' 
+            required 
+            />
+            <ButtonArea value="Entrar" resetValue={"Limpar"}/>
+            <Link to='/cadastro'>Não possui cadastro?</Link>
+            <Link to='/nova-senha'>Esqueceu sua senha?</Link>
+            <Link to='/reativar-conta'>Reativar Conta?</Link>
+          </Form>
+        </FormContainer>
+      </MainBody>
     );
 }
 

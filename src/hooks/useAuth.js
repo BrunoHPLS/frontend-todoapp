@@ -39,9 +39,8 @@ export default function useAuth(){
     }
 
     async function handleLogin({loginEmail,senha}) {
-        let response = 'autenticado';
-       await loginUser(loginEmail,senha)
-       .then(({data:{token,nome,email}})=>{
+       return await loginUser(loginEmail,senha)
+       .then(({data:{token,nome,email},status})=>{
             localStorage.setItem('token',JSON.stringify(token));
             localStorage.setItem('usuario',JSON.stringify({nome: nome,email: email}))
 
@@ -49,10 +48,10 @@ export default function useAuth(){
 
             setUsuario({nome: nome,email: email});
             setAuthenticated(true);
-        }).catch(({response:{data:{description}}})=>{
-            response = description;
+            return {description: "Olá "+nome,statusCode: status};
+        }).catch(({response:{data:{description,statusCode}}})=>{
+            return {description,statusCode};
         });
-        return response;
     }
 
     function handleLogout() {
