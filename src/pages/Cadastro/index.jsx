@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthBody from '../../components/AuthBody';
 import Form from '../../components/Form';
 import ButtonArea from '../../components/Form/ButtonArea';
 import FormContainer from '../../components/FormContainer';
 import Link from '../../components/Link';
 import TextField from '../../components/TextField';
 import { register } from '../../service/userService';
-import { MainBody } from '../style';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Cadastro() {
   }
 
 return (
-  <MainBody>
+  <AuthBody>
     <FormContainer title={'Cadastro'}>
       <Form 
         asyncRequest={register}
@@ -63,7 +63,7 @@ return (
         <Link to='/login'>Ir para login</Link>
       </Form>
     </FormContainer>
-  </MainBody>
+  </AuthBody>
 );
 }
 

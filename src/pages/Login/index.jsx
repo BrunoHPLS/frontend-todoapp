@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
+import AuthBody from '../../components/AuthBody';
 import Form from '../../components/Form';
 import ButtonArea from '../../components/Form/ButtonArea';
 import FormContainer from '../../components/FormContainer';
 import Link from '../../components/Link';
 import TextField from '../../components/TextField';
 import { AuthContext } from '../../contexts/AuthContext';
-import { MainBody } from '../style';
 
 function Login() {
     const {handleLogin} = useContext(AuthContext);
 
     return (
-      <MainBody>
+      <AuthBody>
         <FormContainer title={'Login'}>
           <Form 
             asyncRequestWithResponse={handleLogin}
@@ -38,7 +38,7 @@ function Login() {
             <Link to='/reativar-conta'>Reativar Conta?</Link>
           </Form>
         </FormContainer>
-      </MainBody>
+      </AuthBody>
     );
 }
 

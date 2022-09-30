@@ -60,17 +60,18 @@ const GlobalStyles = createGlobalStyle`
         --white: #E5E5E5;
         --gray: #576269;
         --green: #00C896;
+        --dark-green: #318285;
         --aqua: #C8FCEA;
         ${({theme})=>(theme === 'dark' ? 
         `
-        --inverse-primary-color: #F2ECFF;
-        --inverse-secondary-color: #FAF7FF;
+        --font-primary-color: #F2ECFF;
+        --font-secondary-color: #FAF7FF;
         --primary-color: #252525;
         --secondary-color: #3F4246;
         `:
         `
-        --inverse-primary-color: #303030;
-        --inverse-secondary-color: #3F4246;
+        --font-primary-color: #303030;
+        --font-secondary-color: #3F4246;
         --primary-color: #D5D5D5;
         --secondary-color: #C7D0E8;
         `)}
@@ -78,8 +79,20 @@ const GlobalStyles = createGlobalStyle`
 
     body{
         background-color: var(--primary-color);
-        color: var(--inverse-primary-color);
+        color: var(--font-primary-color);
         font-family: 'Roboto', sans-serif;
+    }
+
+    #root{
+        min-width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    button,input[type=submit], input[type=reset] {
+        cursor: pointer;
     }
 `;
 

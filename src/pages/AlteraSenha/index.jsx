@@ -1,17 +1,17 @@
 import React from 'react';
+import AuthBody from '../../components/AuthBody';
 import Form from '../../components/Form';
 import ButtonArea from '../../components/Form/ButtonArea';
 import FormContainer from '../../components/FormContainer';
 import Link from '../../components/Link';
 import TextField from '../../components/TextField';
 import { alteraSenha, newToken } from '../../service/userService';
-import { MainBody } from '../style';
 
 function AlteraSenha() {
     const formDescription = `Digite seu email abaixo para o token ser enviado.\nApós recebê-lo, digite a senha desejada e o token.\nSua senha será alterada.`
 
   return (
-    <MainBody>
+    <AuthBody>
       <FormContainer title={"Alterar Senha"} description={formDescription}>
         <Form 
           formTitle="Email"
@@ -51,7 +51,7 @@ function AlteraSenha() {
         </Form>
         <Link to="/login">Ir para login</Link>
       </FormContainer>
-  </MainBody>
+  </AuthBody>
   );
 }
 

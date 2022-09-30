@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Container, FormMessage } from './style';
+import { Container, FormMessage, FormTitle } from './style';
 
 function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse,formTitle,...rest}) {
 
   const [responseStatus,setResponseStatus] = useState(undefined);
   const [resetAll,setResetAll] = useState(false);
+  const [loading,setLoading] = useState(false);
 
   function resetMessage(){
     setResponseStatus(undefined);
@@ -12,8 +13,9 @@ function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse
 
   return (
     <Container 
-    formTitle={formTitle}
+    isLoading={loading}
     onSubmit={async (event)=>{
+      setLoading(true);
       event.preventDefault();
       let formDto = {};
       React.Children.forEach(children, child => {
@@ -32,12 +34,13 @@ function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse
         setResponseStatus(response);
         asyncRequestAction(response);
       }
-
+      setLoading(false);
     }}
     onReset={(event)=>{event.target.reset();
     setResetAll(true)}} 
     {...rest}
     >
+        {formTitle && <FormTitle>{formTitle}</FormTitle>}
         {React.Children.map(children, child => {
           if (React.isValidElement(child) && child.type.name==="TextField" ) {
             return React.cloneElement(child, { resetall: resetAll,setresetall: setResetAll,resetonchange: resetMessage });

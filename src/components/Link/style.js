@@ -10,12 +10,18 @@ export const Anchor = styled(Link)`
     padding: 0;
     margin: 0;
     color: var(--aqua);
-    font-size: 0.9rem;
+    font-size: ${({media})=>( media !== 'mobile' ? "1.2rem":"0.9rem")};
     font-style: italic;
 
     &::before{
-        font-size: 1.2rem;
+        font-size: ${({media})=>( media !== 'mobile' ? "1.4rem":"1.2rem")};
         font-family: 'Material Symbols Outlined';
         content: "exit_to_app";
+    }
+
+    &:hover{
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.05);
+        text-shadow: 0px 0px 2px ;
     }
 `;

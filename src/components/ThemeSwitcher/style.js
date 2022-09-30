@@ -8,7 +8,7 @@ export const Container = styled.div`
     height: 2rem;
     overflow: hidden;
     box-sizing: border-box;
-    border: 0.125rem solid var(--inverse-secondary-color);
+    border: 0.125rem solid var(--font-secondary-color);
     border-radius: 0.5rem;
     transition: all 0.2s ease-in-out;
 `;
@@ -17,7 +17,7 @@ export const Label = styled.label`
     cursor: pointer;
     width: 100%;
     height: 100%;
-    background-color: var(--inverse-primary-color);
+    background-color: var(--font-primary-color);
     display: flex;
     align-items: center;
     justify-content: center;

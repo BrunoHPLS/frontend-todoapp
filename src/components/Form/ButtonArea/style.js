@@ -7,20 +7,35 @@ export const Container = styled.div`
 
 export const Button = styled.input.attrs({type: 'submit'})`
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2rem;
-    font-size: 1.15rem;
+    font-size: ${({media})=>(media !== 'mobile' ? "1.5rem":"1.15rem")};
     border: none;
-    padding: 0;
+    padding: 0.4rem;
     outline: none;
     border-radius: 0.25rem;
     background-color: var(--green);
-    color: var(--inverse-secondary-color);
+    color: var(--font-secondary-color);
+    transition: all 0.3s ease-in-out;
+
+    ${({media})=>(media === 'large' && `
+        background-color: var(--dark-green);
+
+        &:hover{
+            background-color: var(--green);
+        }
+    `)}
 `;
 
 export const ResetButton = styled(Button).attrs({type: 'reset'})`
-background-color: var(--inverse-secondary-color);
-color: var(--secondary-color);
+    background-color: var(--font-secondary-color);
+    color: var(--secondary-color);
+
+    ${({media})=>(media === 'large' && `
+    &:hover{
+        background-color: var(--font-secondary-color);
+    }
+    `)}
 `

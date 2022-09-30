@@ -21,13 +21,13 @@ const bounceAnimation = keyframes`
 
 export const InputIcon = styled.label`
     font-family: 'Material Symbols Outlined';
-    min-width: 2.25rem;
+    min-width: ${({media})=>(media !== 'mobile' ? "2.7rem":"2.25rem")};
     box-sizing: border-box;
-    font-size: 1.4rem;
+    font-size:${({media})=>(media !== 'mobile' ? "1.75rem":"1.4rem")};
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--inverse-secondary-color);
+    color: var(--font-secondary-color);
 `
 
 export const AnimatedInputIcon = styled(InputIcon)`
@@ -41,8 +41,12 @@ export const InputArea = styled.input`
     width: 100%;
     box-sizing: border-box;
     padding: 0.4rem 0.25rem;
-    font-size: 1.15rem;
-    border: none;
-    background-color: var(--inverse-secondary-color);
+    font-size: ${({media})=>(media !== 'mobile' ? "1.5rem":"1.15rem")};
+    border: 2px solid transparent;
+    background-color: var(--font-secondary-color);
     border-radius: 0.25rem;
+
+    &:required{
+        border: 2px solid var(--red);
+    }
 `;

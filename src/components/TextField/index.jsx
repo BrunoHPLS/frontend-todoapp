@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { MediaContext } from '../../contexts/MediaContext';
 import PasswordRevealButton from './PasswordRevealButton';
 import { AnimatedInputIcon, InputArea, InputContainer, InputIcon } from './style';
 
@@ -7,6 +8,7 @@ function TextField({type,id,name,placeholder,required,icon,resetonchange,resetal
     const [isChecked,setChecked] = useState(false);
     const [value,setValue] = useState('');
     const [focused,setFocused] = useState(false);
+    const {media} = useContext(MediaContext);
 
     useEffect(()=>{
       if(resetall){
@@ -20,8 +22,9 @@ function TextField({type,id,name,placeholder,required,icon,resetonchange,resetal
 
   return (
     <InputContainer focused={focused}>
-       {icon &&  focused ? <AnimatedInputIcon htmlFor={name} >{icon}</AnimatedInputIcon> : <InputIcon htmlFor={name} >{icon}</InputIcon>}
+       {icon &&  focused ? <AnimatedInputIcon htmlFor={name} media={media} >{icon}</AnimatedInputIcon> : <InputIcon htmlFor={name} media={media} >{icon}</InputIcon>}
         <InputArea 
+        media={media}
         onFocus={()=>{setFocused(true)}}
         onBlur={()=>{setFocused(false)}}
         type={(!isPassword) ? type:(isChecked) ? "text":"password"}
@@ -34,7 +37,7 @@ function TextField({type,id,name,placeholder,required,icon,resetonchange,resetal
         {...rest}
         
         />
-       {(isPassword) && <PasswordRevealButton name={name+"_reveal"} checked={isChecked} toggleCheck={toggleCheck} />}
+       {(isPassword) && <PasswordRevealButton name={name+"_reveal"} checked={isChecked} toggleCheck={toggleCheck} media={media} />}
     </InputContainer>
   );
 }

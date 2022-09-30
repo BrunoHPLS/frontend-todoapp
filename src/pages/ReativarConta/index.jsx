@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthBody from '../../components/AuthBody';
 import Form from '../../components/Form';
 import ButtonArea from '../../components/Form/ButtonArea';
 import FormContainer from '../../components/FormContainer';
 import Link from '../../components/Link';
 import TextField from '../../components/TextField';
 import { reactive } from '../../service/userService';
-import { MainBody } from '../style';
-
-// import { Container } from './styles';
 
 function ReativarConta() {
   const formDescription = `Semelhante ao cadastro, um token será enviado para o seu email e você será redirecionado para a tela de validação de tokens para reativar seu usuário.\nAqui será possível reativar ele com um novo nome e senha.`
@@ -31,7 +29,7 @@ function ReativarConta() {
   }
 
   return (
-    <MainBody>
+    <AuthBody>
       <FormContainer title={"Reativar usuário"} description={formDescription}>
         <Form
           asyncRequest={reactive}
@@ -66,7 +64,7 @@ function ReativarConta() {
           <Link to='/login'>Ir para login</Link>
         </Form>
       </FormContainer>
-  </MainBody>
+  </AuthBody>
   );
 }
 

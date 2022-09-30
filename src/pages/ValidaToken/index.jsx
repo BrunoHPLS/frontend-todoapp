@@ -1,17 +1,17 @@
 import React from 'react';
+import AuthBody from '../../components/AuthBody';
 import Form from '../../components/Form';
 import ButtonArea from '../../components/Form/ButtonArea';
 import FormContainer from '../../components/FormContainer';
 import Link from '../../components/Link';
 import TextField from '../../components/TextField';
 import { validate } from '../../service/userService';
-import { MainBody } from '../style';
 
 
 function ValidaToken() {
 
 return (
-  <MainBody>
+  <AuthBody>
     <FormContainer title={'Validar Login'}>
       <Form 
         asyncRequestWithResponse={validate}
@@ -29,7 +29,7 @@ return (
         <Link to='/login'>Ir para login</Link>
       </Form>
     </FormContainer>
-  </MainBody>
+  </AuthBody>
 );
 }
 

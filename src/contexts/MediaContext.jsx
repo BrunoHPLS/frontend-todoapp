@@ -12,7 +12,7 @@ function MediaProvider({children}) {
         media = 'tablet';
     }
 
-    if(useMediaQuery('(min-width: 1200px)')){
+    if(useMediaQuery('(min-width: 1400px)')){
         media = 'large';
     }
 
