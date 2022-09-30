@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import { MediaProvider } from './contexts/MediaContext';
 import {ThemeProvider} from './contexts/ThemeContext';
-import Rotas from './rotas';
+import Rotas from './Rotas';
 
 function App() {
   return (
