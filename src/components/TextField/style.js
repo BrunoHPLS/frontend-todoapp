@@ -46,7 +46,7 @@ export const InputArea = styled.input`
     background-color: var(--font-secondary-color);
     border-radius: 0.25rem;
 
-    &:required{
+    &:invalid{
         border: 2px solid var(--red);
     }
 `;
