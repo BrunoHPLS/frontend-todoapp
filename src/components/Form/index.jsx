@@ -43,7 +43,7 @@ function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse
         {formTitle && <FormTitle>{formTitle}</FormTitle>}
         {React.Children.map(children, child => {
           if (React.isValidElement(child) && child.type.name==="TextField" ) {
-            return React.cloneElement(child, { resetall: resetAll,setresetall: setResetAll,resetonchange: resetMessage });
+            return React.cloneElement(child, { resetAll,setResetAll,resetMessage });
           }
           return child;
         })}

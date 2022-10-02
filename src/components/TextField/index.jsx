@@ -3,7 +3,7 @@ import { MediaContext } from '../../contexts/MediaContext';
 import PasswordRevealButton from './PasswordRevealButton';
 import { AnimatedInputIcon, InputArea, InputContainer, InputIcon } from './style';
 
-function TextField({type,id,name,placeholder,required,icon,resetonchange,resetall,setresetall,...rest}) {
+function TextField({type,id,name,placeholder,required,icon,resetMessage,resetAll,setResetAll,...rest}) {
     const isPassword = type === 'password';
     const [isChecked,setChecked] = useState(false);
     const [value,setValue] = useState('');
@@ -11,10 +11,10 @@ function TextField({type,id,name,placeholder,required,icon,resetonchange,resetal
     const {media} = useContext(MediaContext);
 
     useEffect(()=>{
-      if(resetall){
+      if(resetAll){
         setValue('');
       }
-    },[resetall]);
+    },[resetAll]);
 
     function toggleCheck(){
         setChecked(!isChecked);
@@ -33,7 +33,7 @@ function TextField({type,id,name,placeholder,required,icon,resetonchange,resetal
         placeholder={placeholder} 
         required={required} 
         value={value}
-        onChange={(event)=>{setresetall(false);setValue(event.target.value);resetonchange();}}
+        onChange={(event)=>{setResetAll(false);setValue(event.target.value);resetMessage();}}
         {...rest}
         
         />
