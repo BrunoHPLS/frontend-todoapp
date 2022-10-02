@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import TextField from '../TextField';
 import { Container, FormMessage, FormTitle } from './style';
 
-function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse,formTitle,...rest}) {
+function Form({fields,children,asyncRequest,asyncRequestAction,asyncRequestWithResponse,formTitle,...rest}) {
 
   const [responseStatus,setResponseStatus] = useState(undefined);
   const [resetAll,setResetAll] = useState(false);
@@ -18,12 +19,9 @@ function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse
       setLoading(true);
       event.preventDefault();
       let formDto = {};
-      React.Children.forEach(children, child => {
-        if (React.isValidElement(child) && child.type.name==="TextField" ) {
-          let field = child.props.id;
-          let value = event.target[field].value;
-          formDto[field] = value;
-        }
+      fields.forEach(({id})=> {
+          let value = event.target[id].value;
+          formDto[id] = value;
       });
       if(asyncRequestWithResponse){
         setResponseStatus(await asyncRequestWithResponse(formDto));
@@ -41,12 +39,21 @@ function Form({children,asyncRequest,asyncRequestAction,asyncRequestWithResponse
     {...rest}
     >
         {formTitle && <FormTitle>{formTitle}</FormTitle>}
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child) && child.type.name==="TextField" ) {
-            return React.cloneElement(child, { resetAll,setResetAll,resetMessage });
-          }
-          return child;
-        })}
+        {fields.map(({icon,type,id,name,placeholder,required},index)=>(
+          <TextField 
+          key={index} 
+          icon={icon} 
+          type={type} 
+          id={id} 
+          name={name} 
+          placeholder={placeholder} 
+          required={required} 
+          resetMessage={resetMessage} 
+          resetAll={resetAll}
+          setResetAll={setResetAll}
+          />
+        ))}
+        {children}
         {responseStatus && <FormMessage code={responseStatus.statusCode}>{responseStatus.description}</FormMessage>}
     </Container>
   );

@@ -9,21 +9,24 @@ import { validate } from '../../service/userService';
 
 
 function ValidaToken() {
+  const textFields = [
+    {
+      icon:"key",
+      type:"text" ,
+      id:'token' ,
+      name:'token' ,
+      placeholder:'Digite o token' ,
+      required: true
+    }
+  ];
 
 return (
   <AuthBody>
     <FormContainer title={'Validar Login'}>
       <Form 
+      fields={textFields}
         asyncRequestWithResponse={validate}
       >
-        <TextField 
-        icon="key"
-        type="text" 
-        id='token' 
-        name='token' 
-        placeholder='Digite o token' 
-        required
-        />
         <ButtonArea value="Validar"/>
         <Link to='/cadastro'>Ir para cadastro</Link>
         <Link to='/login'>Ir para login</Link>

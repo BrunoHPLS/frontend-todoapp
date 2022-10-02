@@ -11,6 +11,32 @@ import { register } from '../../service/userService';
 function Cadastro() {
   const navigate = useNavigate();
   const [registered,setRegistered] = useState(false);
+  const textFields = [
+    {
+      icon:"person",
+      type:"text" ,
+      id:'nome',
+      name:'nome' ,
+      placeholder:'Digite seu novo nome' ,
+      required: true
+    },
+    {
+      icon:"mail",
+      type:"email" ,
+      id:'email',
+      name:'email' ,
+      placeholder:'Digite seu email' ,
+      required: true
+    },
+    {
+      icon:"password",
+      type:"password" ,
+      id:'senha',
+      name:'senha' ,
+      placeholder:'Digite sua senha' ,
+      required: true
+    }
+  ];
 
   useEffect(()=>{
       if(registered){
@@ -31,33 +57,10 @@ return (
   <AuthBody>
     <FormContainer title={'Cadastro'}>
       <Form 
+        fields={textFields}
         asyncRequest={register}
         asyncRequestAction={registerAction}
       >
-        <TextField  
-        icon="person"
-        type="text" 
-        id='nome'
-        name='nome' 
-        placeholder='Digite seu nome de usuário' 
-        required
-        />
-        <TextField  
-        icon="mail"
-        type="email" 
-        id='email'
-        name='email' 
-        placeholder='Digite seu email' 
-        required
-        />
-        <TextField  
-        icon="password"
-        type="password" 
-        id='senha'
-        name='senha' 
-        placeholder='Digite sua senha' 
-        required
-        />
         <ButtonArea value="Cadastrar" resetValue={"Limpar"}/>
         <Link to='/validate'>Ir para validação de token</Link>
         <Link to='/login'>Ir para login</Link>

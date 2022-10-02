@@ -10,8 +10,35 @@ import { reactive } from '../../service/userService';
 
 function ReativarConta() {
   const formDescription = `Semelhante ao cadastro, um token será enviado para o seu email e você será redirecionado para a tela de validação de tokens para reativar seu usuário.\nAqui será possível reativar ele com um novo nome e senha.`
-    const navigate = useNavigate();
-    const [registered,setRegistered] = useState(false);
+  const navigate = useNavigate();
+  const [registered,setRegistered] = useState(false);
+  
+  const textFields = [
+    {
+      icon:"person",
+      type:"text" ,
+      id:'nome',
+      name:'nome' ,
+      placeholder:'Digite seu nome de usuário' ,
+      required: true
+    },
+    {
+      icon:"mail",
+      type:"email" ,
+      id:'email',
+      name:'email' ,
+      placeholder:'Digite seu email' ,
+      required: true
+    },
+    {
+      icon:"password",
+      type:"password" ,
+      id:'senha',
+      name:'senha' ,
+      placeholder:'Digite sua nova senha' ,
+      required: true
+    }
+  ];  
 
   useEffect(()=>{
       if(registered){
@@ -32,33 +59,10 @@ function ReativarConta() {
     <AuthBody>
       <FormContainer title={"Reativar usuário"} description={formDescription}>
         <Form
+          fields={textFields}
           asyncRequest={reactive}
           asyncRequestAction={registerAction}
         >
-          <TextField 
-          icon="person"
-          type="text" 
-          id='nome' 
-          name='nome' 
-          placeholder='Digite seu novo nome' 
-          required
-          />
-          <TextField 
-          icon="mail"
-          type="email" 
-          id='email' 
-          name='email' 
-          placeholder='Digite seu email' 
-          required
-          />
-          <TextField 
-          icon="password"
-          type="password" 
-          id='senha' 
-          name='senha' 
-          placeholder='Digite sua nova senha' 
-          required
-          />
           <ButtonArea value="Reativar"/>
           <Link to='/validate'>Ir para validação de token</Link>
           <Link to='/login'>Ir para login</Link>
